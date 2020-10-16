@@ -3,22 +3,32 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .models import SquirrelSighting
+from .forms import SightingForm
 
 def index(request):
     return HttpResponse("Index Page")
 
 def map(request):
-    return HttpResponse("Map")
+    sightings = SquirrelSighting.objects.all()[:100]
+    context = {'sightings': sightings}
+    return render(request, 'squirrel/map.html', context)
 
 def sightings(request):
     squirrel = SquirrelSighting.objects.all()
     context = {'squirrel': squirrel}
     return render(request, 'squirrel/all.html', context)
 
-def squirrel_details(request):
-    return HttpResponse("Squirrel details")
+def detail(request, unique_squirrel_id):
+    squirrel = get_object_or_404(SquirrelSighting, pk=unique_squirrel_id)
+    form = SightingForm(request.POST or None, instance=squirrel)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('squirrel:sightings'))
+    return render(request, 'squirrel/detail.html', {'form': form})
 
 def add(request):
     return HttpResponse("Add")
