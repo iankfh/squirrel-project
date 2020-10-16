@@ -1,0 +1,34 @@
+{% extends 'squirrel/base.html' %}
+
+{% load static %}
+
+{% block title %}  All Squirrel Sightings {% endblock %}
+
+{% block main %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for squi in squirrel %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">
+                <div class="squirrel-id">
+                  <strong>{{ squi.unique_squirrel_id }}</strong>
+		  <strong>{{ squi.date }}</strong>
+                </div>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
