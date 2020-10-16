@@ -23,7 +23,7 @@ def sightings(request):
     return render(request, 'squirrel/all.html', context)
 
 def detail(request, unique_squirrel_id):
-    squirrel = get_object_or_404(SquirrelSighting, pk=unique_squirrel_id)
+    squirrel = get_object_or_404(SquirrelSighting, unique_squirrel_id=unique_squirrel_id)
     form = SightingForm(request.POST or None, instance=squirrel)
     if form.is_valid():
         form.save()
@@ -36,4 +36,4 @@ def add(request):
 def stats(request):
     return HttpResponse("Stats")
 
-# Create your views here.
+
