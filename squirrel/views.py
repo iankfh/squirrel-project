@@ -38,10 +38,10 @@ def add(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('squirrel:sightings'))
-        else:
-            form = SightingForm()
-            context = {'form':form}
-            return render(request, 'squirrel/add.html', context)
+    else:
+        form = SightingForm()
+        context = {'form':form}
+        return render(request, 'squirrel/add.html', context)
 
 
 def stats(request):
