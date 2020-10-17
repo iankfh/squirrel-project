@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic.edit import CreateView, DeleteView
+from django.db.models import Avg, Max, Min, Count
 
 
 from .models import SquirrelSighting
@@ -33,7 +35,7 @@ def detail(request, unique_squirrel_id):
 
 def add(request):
     if request.method=='Post':
-        form = SightingForm(request.POST, instance=squirrel)
+        form = SightingForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('squirrel:sightings'))
@@ -44,6 +46,18 @@ def add(request):
 
 
 def stats(request):
-    return HttpResponse("Stats")
+    squirrels = SquirrelSighting.objects.all()
+    total_num = len(squirrels)
+    latitude = squirrels.aggregate(minimum=Min('Latitude'), maximum=Max('Latitude'))
+    longitude = squirrels.aggregate(minimum=Min('Longitude'), maximum=Max('Longitude'))
+    shift = list(squirrels.values_list('Shift').annotate(Count('Shift')))
+    age = len(squirrels.filter(Age='Adult'))
+    context = {'total':total,
+               'latitude':latitude,
+               'longitude':longitude,
+               'shift':shift,
+               'age':age,
+    }
+    return render(request, 'squirrel/stats.html', context)
 
 
