@@ -5,8 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic.edit import CreateView, DeleteView
-from django.db.models import Avg, Max, Min, Count
+from django.db.models import Max, Min, Count
 
 
 from .models import SquirrelSighting
