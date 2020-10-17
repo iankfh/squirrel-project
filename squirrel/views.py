@@ -33,7 +33,7 @@ def detail(request, unique_squirrel_id):
 
 def add(request):
     if request.method=='Post':
-        form = SightingForm(request.POST)
+        form = SightingForm(request.POST, instance=squirrel)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('squirrel:sightings'))
