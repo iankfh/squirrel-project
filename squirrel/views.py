@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+
 from .models import SquirrelSighting
 from .forms import SightingForm
 
@@ -31,7 +32,16 @@ def detail(request, unique_squirrel_id):
     return render(request, 'squirrel/detail.html', {'form': form})
 
 def add(request):
-    return HttpResponse("Add")
+    if request.method=='Post':
+        form = SightingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('squirrel:sightings'))
+        else:
+            form = SightingForm()
+            context = {'form':form}
+            return render(request, 'sightings/add.html', context)
+
 
 def stats(request):
     return HttpResponse("Stats")
