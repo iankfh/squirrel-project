@@ -40,7 +40,7 @@ def add(request):
         else:
             form = SightingForm()
             context = {'form':form}
-            return render(request, 'sightings/add.html', context)
+            return render(request, 'squirrel/add.html', context)
 
 
 def stats(request):
