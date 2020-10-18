@@ -33,15 +33,15 @@ def detail(request, unique_squirrel_id):
     return render(request, 'squirrel/detail.html', {'form': form})
 
 def add(request):
-    if request.method=='Post':
+    if request.method == 'Post':
         form = SightingForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('squirrel:sightings'))
-    else:
-        form = SightingForm()
-        context = {'form':form}
-        return render(request, 'squirrel/add.html', context)
+        else:
+            form = SightingForm()
+            context = {'form':form}
+            return render(request, 'squirrel/add.html', context)
 
 
 def stats(request):
@@ -52,7 +52,7 @@ def stats(request):
     shift = list(squirrels.values_list('Shift').annotate(Count('Shift')))
     age = len(squirrels.filter(Age='Adult'))
     context = {'total':total,
-               'latitude':latitude,
+               'latitude':latitude
                'longitude':longitude,
                'shift':shift,
                'age':age,
