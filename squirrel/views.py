@@ -52,7 +52,7 @@ def stats(request):
     shift = list(squirrels.values_list('Shift').annotate(Count('Shift')))
     age = len(squirrels.filter(Age='Adult'))
     context = {'total':total,
-               'latitude':latitude
+               'latitude':latitude,
                'longitude':longitude,
                'shift':shift,
                'age':age,
