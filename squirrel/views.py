@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic.edit import CreateView, DeleteView
 from django.db.models import Max, Min, Count
 
 
@@ -31,10 +32,11 @@ def detail(request, unique_squirrel_id):
         form = SightingForm(request.POST, instance=squirrel)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('squirrel/{unique_squirrel_id}'))
+            return JsonResponse({})
     else:
         form = SightingForm(instance=squirrel)
-    return render(request, 'squirrel/detail.html', {'form': form})
+    #return render(request, 'squirrel/detail.html', {'form': form})
+    return JsonResponse({})
 
 def add(request):
     if request.method == 'Post':
@@ -44,7 +46,7 @@ def add(request):
             return HttpResponseRedirect(reverse('squirrel:sightings'))
     else:
         form = SightingForm()
-        context = {'form':form}
+    context = {'form':form}
     return render(request, 'squirrel/add.html', context)
 
 
