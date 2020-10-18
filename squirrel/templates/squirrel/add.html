@@ -1,31 +1,6 @@
-{% extends 'squirrel/sightings.html' %}
-  
-{% load static %}
-{% block title %}{{ squirrel.unique_squirrel_id }}{% endblock %}
-{% block main %}
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div>
-            <div class="card mb-3 shadow-sm">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="card mb-8 shadow-sm">
-            <div class="card-body">
-              <p class="card-text">
-                <form  method="post">
-                        {% csrf_token %}
-                        {{ form }}
-                        <input type="submit" value="Submit">
-                </form>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endblock %}
+<p class="card-text">
+	<form  method="post">
+		{% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit">
+        </form>
