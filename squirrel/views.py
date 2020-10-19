@@ -38,7 +38,7 @@ def add(request):
     if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('squirrel:sightings'))
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'squirrel/add.html', context)
 
 

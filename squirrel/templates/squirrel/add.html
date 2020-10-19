@@ -19,8 +19,7 @@
             <div class="card-body">
               <p class="card-text">
                 <form  method="post">
-    			{% csrf_token %}
-    			{{ form.as_ul }}
+			{{ form.as_ul }}
     			<input type="submit" value="Submit">
 		</form>
               </p>
