@@ -35,9 +35,20 @@ class SquirrelSighting(models.Model):
         help_text=_('Date of sighting; Format YYYY-MM-DD'),
     )
 
+    Adult = 'Adult'
+    Juvenile = 'Juvenile'
+    Unknown = '?'
+
+    AGE_CHOICES = [
+        (Adult, 'Adult'),
+        (Juvenile, 'Juvenile'),
+        (Unknown, '?'),
+    ]
+
     age = models.CharField(
-        max_length=100,
+        max_length=8,
         help_text=_('Age description'),
+        choices=AGE_CHOICES,
         blank=True,
     )
 
