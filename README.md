@@ -11,4 +11,4 @@ Code Commandos, Section 001
 UNIs: [yg2740, hsk2150]
 
 To View the Application: 
-Check out: http://35.230.172.16/map/       http://35.230.172.16/sightings/
+Check out http://35.230.172.16/map/   &   http://35.230.172.16/sightings/
