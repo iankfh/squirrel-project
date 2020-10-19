@@ -7,7 +7,9 @@
 {% block main %}
   <div class="album py-5 bg-light">
     <div class="container">
-
+      <p>	    
+      <a class="btn btn-sm btn-outline-secondary" href="{% url 'squirrel:add' %}">Add New Squirrel Sighting</a>
+      </p>
       <div class="row">
         {% for squi in squirrel %}
         <div class="col-md-4">

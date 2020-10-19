@@ -53,11 +53,11 @@ def stats(request):
     longitude = squirrels.aggregate(minimum=Min('Longitude'), maximum=Max('Longitude'))
     shift = list(squirrels.values_list('Shift').annotate(Count('Shift')))
     age = len(squirrels.filter(Age='Adult'))
-    context = {'total':total,
-               'latitude':latitude,
-               'longitude':longitude,
-               'shift':shift,
-               'age':age,
+    context = {'total': total_num,
+               'latitude': latitude,
+               'longitude': longitude,
+               'shift': shift,
+               'age': age,
     }
     return render(request, 'squirrel/stats.html', context)
 

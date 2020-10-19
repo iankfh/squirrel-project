@@ -32,7 +32,7 @@ class SquirrelSighting(models.Model):
     )
 
     date = models.DateField(
-        help_text=_('Date of sighting'),
+        help_text=_('Date of sighting; Format YYYY-MM-DD'),
     )
 
     age = models.CharField(
