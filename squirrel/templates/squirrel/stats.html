@@ -1,31 +1,45 @@
-<html>
-    <head>
-        <style>
-        .header {
-            padding: 60px;
-            text-align: center;
-	    font-size: 200px;}
-	h1 { color:'black'; font-size: 150px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;}
-	</style>
-    </head>
-    <body>
-        <header class='header'>
-            <h1>Statistics of Observed Squirrels in Central Park</h1>
-        </header>
+{% extends 'squirrel/base.html' %}
 
+{% load static %}
 
-        <main>
-        	<p>In total, there are {{total}} observed squirrels in Central Park in this data set
+{% block title %}Statistics of Observed Squirrels in Central Park{% endblock %}
+
+{% block main %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <div class="card mb-3 shadow-sm">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card mb-8 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">
+	      <style> h1 {font-weight: bold; font-size: 20px; text-align: center;} </style>
+	      <h1> Statistics of Observed Squirrels in Central Park </h1>
+	      	<br>
+	        <li>In total, there are {{total}} unique squirrel sightings in Central Park in this data set</li>
 		<br>
-      		<li>The minimum observed latitude is {{lattitude.minimum}}</li>
-      		<li>The maximum observed latitude is {{lattitude.maximum}}</li>
+		<li>The earliest recorded sighting occurred on {{first.minimum}}</li>
+		<br>
+      		<li>The minimum observed latitude is {{latitude.minimum}}</li>
+      		<li>The maximum observed latitude is {{latitude.maximum}}</li>
       		<br>
       		<li>The minimum observed longitude is {{longitude.minimum}}</li>
       		<li>The maximum observed longitude is {{longitude.maximum}}</li>
       		<br>
-      		<li>Shift: {{shift}}</li>
+		<li>{{am}} sightings were seen in the AM, and {{pm}} sightings were seen in the PM</li>
       		<br>
-		<li>There are {{age}} adult squirrels observed</li></p>
-    	</main>
-    </body>
-</html>
+		<li>{{age}} of the squirrels appeared to be adults</li>
+	      </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

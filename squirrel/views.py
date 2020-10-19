@@ -49,15 +49,20 @@ def add(request):
 def stats(request):
     squirrels = SquirrelSighting.objects.all()
     total_num = len(squirrels)
-    latitude = squirrels.aggregate(minimum=Min('Latitude'), maximum=Max('Latitude'))
-    longitude = squirrels.aggregate(minimum=Min('Longitude'), maximum=Max('Longitude'))
-    shift = list(squirrels.values_list('Shift').annotate(Count('Shift')))
-    age = len(squirrels.filter(Age='Adult'))
+    latitude = squirrels.aggregate(minimum=Min('latitude'), maximum=Max('latitude'))
+    longitude = squirrels.aggregate(minimum=Min('longitude'), maximum=Max('longitude'))
+    shift = dict(squirrels.values_list('shift').annotate(Count('shift')))
+    am = shift['AM']
+    pm = shift['PM']
+    age = len(squirrels.filter(age='Adult'))
+    first = squirrels.aggregate(minimum=Min('date'))
     context = {'total': total_num,
                'latitude': latitude,
                'longitude': longitude,
-               'shift': shift,
+               'am': am,
+               'pm': pm,
                'age': age,
+               'first': first,
     }
     return render(request, 'squirrel/stats.html', context)
 
