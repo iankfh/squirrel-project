@@ -9,6 +9,7 @@
     <div class="container">
       <p>	    
       <a class="btn btn-sm btn-outline-secondary" href="{% url 'squirrel:add' %}">Add New Squirrel Sighting</a>
+      <a class="btn btn-sm btn-outline-secondary" href="{% url 'squirrel:stats' %}">View General Stats</a>
       </p>
       <div class="row">
         {% for squi in squirrel %}
