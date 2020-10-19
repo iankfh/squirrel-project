@@ -18,9 +18,10 @@
           <div class="card mb-8 shadow-sm">
             <div class="card-body">
               <p class="card-text">
-                <form  method="post">
+	      	<form  method="post" action="{% url 'squirrel:add' %}">
+			{% csrf_token %}
 			{{ form.as_ul }}
-    			<input type="submit" value="Submit">
+    			<input type="submit" value="Add">
 		</form>
               </p>
             </div>
