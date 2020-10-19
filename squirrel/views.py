@@ -34,13 +34,10 @@ def detail(request, unique_squirrel_id):
     return render(request, 'squirrel/detail.html', {'form': form})
 
 def add(request):
-    if request.method == 'Post':
-        form = SightingForm(request.POST, instance=squirrel)
-        if form.is_valid():
+    form = SightingForm(request.POST)
+    if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('squirrel:sightings'))
-    else:
-        form = SightingForm()
     context = {'form':form}
     return render(request, 'squirrel/add.html', context)
 
